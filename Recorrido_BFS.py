@@ -60,3 +60,38 @@ class Grafo:
         """
         for llave in self.m_lista_adyacente.keys():
             print("Nodo", llave, ": ", self.m_lista_adyacente[llave])
+
+    """
+        Por última funcion se tiene el recorrido por BFS(recorrido primero en amplitud).
+        El único parámetro que recibe el nodo incial, es decir, para su recorrido no hace falta
+        un nodo final
+    """
+    def recorrido_bfs(self, nodo_inicio):
+        """
+            Se asignan variables para saber que nodos ya se han visitado, esto con el fin
+            de que no visite dos veces el mismo nodo. Se crea una cola con el módulo que se 
+            importo al inicio. Las dos variables creadas se les envia el nodo de inicio. 
+        """
+        visitado = set()
+        cola = Queue()
+        cola.put(nodo_inicio)
+        visitado.add(nodo_inicio)
+        #CICLO WHILE PARA HACER EL RECORRIDO, DESENCOLAR EL VERTICE E IMPRIMIRLO
+        while not cola.empty():
+            nodo_actual = cola.get()
+            print(nodo_actual, end = " ")
+
+            '''Obtener los vertices adyacentes'''
+            """
+            El siguiente ciclo for ayuda a obtener los vertices adyacentes de cada uno
+            de los nodos que conforman el grafo. Para ello debe de recibir el siguiente 
+            nodo y el nodo en el que se encuentra. 
+            """
+            for (siguiente_nodo, grosor) in self.m_lista_adyacente[nodo_actual]:
+                if siguiente_nodo not in visitado:
+                    """
+                    En el caso de que s eencuentre un nodo que no ha sido visitado
+                    , ponerlo en cola y visitarlo respectivamente.
+                    """
+                    cola.put(siguiente_nodo)
+                    visitado.add(siguiente_nodo)
