@@ -95,3 +95,41 @@ class Grafo:
                     """
                     cola.put(siguiente_nodo)
                     visitado.add(siguiente_nodo)
+                    
+"""
+Para poder ejectar la clase anteriormente creada, se necesita una funcion main,
+la cual se caracteriza por tener el nomnbre __name__. 
+"""
+if __name__ == "__main__":
+
+    """
+    Se le solicita al usuario el número de nodos con los que desea trabajar, se debe
+    de transformar a int el dato. Luego se instancia la clase Grafo, asignando el 
+    parámetro que se solicito al usuario y si es dirigido o no.
+    """
+    numero_de_nodos=int(input("Ingrese el número de nodos del grafo: "))
+    g = Grafo(numero_de_nodos, dirigido=False)
+
+
+    """
+    Ciclo for para que dependiendo del numero de nodos ingresado por el usuario
+    agregge el borde de cada uno
+    """
+    for i in range(numero_de_nodos):
+        print("Nodo número:  "+ str(i))
+        borde1=int(input("Agrege el primer borde: "))
+        borde2=int(input("Agrege el segundo borde: "))
+        #Enviando datos que ha registrado el usaurio
+        g.agregar_borde(borde1,borde2) 
+
+    #SE IMPRIME EL GRAFO DE MANERA GRÁFICA
+    g.dibujar_grafo()
+
+    """
+    Llamando a la función para hacer el recorrido BFS, para ello solo se necesita
+    el nodo incial que puede ser cualquiera, el nodo inicial será ingresado por el usuario
+    """
+    print ("-------Recorrido BFS---------")
+    nodoinicial=int(input("Ingrese el nodo inicial para realizar el recorrido: "))
+    g.recorrido_bfs(nodoinicial)
+    print()
